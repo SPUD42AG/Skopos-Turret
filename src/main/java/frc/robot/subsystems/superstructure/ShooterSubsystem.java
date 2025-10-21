@@ -21,7 +21,6 @@ public class ShooterSubsystem extends SubsystemBase implements ModeSwitchInterfa
 
     public double setpoint = 0.0;
 
-
     public ShooterSubsystem() {
         initializeMotors();
     }

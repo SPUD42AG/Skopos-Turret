@@ -57,4 +57,44 @@ public final class Constants {
             }
         }
     }
+
+    public static final class IntakeConstants {
+    
+        public static final int INTAKE_MOTOR_ID = 0;
+        
+        public static final double P = 0;
+        public static final double I = 0;
+        public static final double D = 0;
+    
+        public static final SlotConfigs PIDConfigs = new SlotConfigs()
+            .withKP(P)
+            .withKI(I)
+            .withKD(D);
+        
+        public static final boolean SUPPLY_CURRENT_LIMIT_ENABLE = true;
+        public static final double SUPPLY_CURRENT_LIMIT = 0;
+        public static final double SUPPLY_CURRENT_LOWER_LIMIT = 0;
+        public static final double SUPPLY_CURRENT_LOWER_TIME = 1;
+
+        public static final CurrentLimitsConfigs currentLimits = new CurrentLimitsConfigs()
+            .withSupplyCurrentLimitEnable(SUPPLY_CURRENT_LIMIT_ENABLE)
+            .withSupplyCurrentLimit(SUPPLY_CURRENT_LIMIT)
+            .withSupplyCurrentLowerLimit(SUPPLY_CURRENT_LOWER_LIMIT)
+            .withSupplyCurrentLowerTime(SUPPLY_CURRENT_LOWER_LIMIT);
+    
+        public static final double SENSOR_MECHANISM_RATIO = 0;
+
+        public static final FeedbackConfigs feedbackConfig = new FeedbackConfigs()
+            .withSensorToMechanismRatio(SENSOR_MECHANISM_RATIO);
+        
+            public enum IntakeState {
+            PLACE_HOLDER(0);
+            
+            public final double speed;
+        
+            private IntakeState(double speed) {
+                this.speed = speed;
+            }
+        }
+    }
 }
