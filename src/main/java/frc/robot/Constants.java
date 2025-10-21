@@ -8,6 +8,9 @@ import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.FeedbackConfigs;
 import com.ctre.phoenix6.configs.SlotConfigs;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -94,6 +97,63 @@ public final class Constants {
         
             private IntakeState(double speed) {
                 this.speed = speed;
+            }
+        }
+    }
+
+    public static final class HoodConstants {
+        public static final int HOOD_MOTOR_ID = 0;
+            
+        public static final double P = 0;
+        public static final double I = 0;
+        public static final double D = 0;
+        
+        public static final SlotConfigs PIDConfigs = new SlotConfigs()
+            .withKP(P)
+            .withKI(I)
+            .withKD(D);
+        
+        public static final boolean SUPPLY_CURRENT_LIMIT_ENABLE = true;
+        public static final double SUPPLY_CURRENT_LIMIT = 0;
+        public static final double SUPPLY_CURRENT_LOWER_LIMIT = 0;
+        public static final double SUPPLY_CURRENT_LOWER_TIME = 1;
+
+        public static final CurrentLimitsConfigs currentLimits = new CurrentLimitsConfigs()
+            .withSupplyCurrentLimitEnable(SUPPLY_CURRENT_LIMIT_ENABLE)
+            .withSupplyCurrentLimit(SUPPLY_CURRENT_LIMIT)
+            .withSupplyCurrentLowerLimit(SUPPLY_CURRENT_LOWER_LIMIT)
+            .withSupplyCurrentLowerTime(SUPPLY_CURRENT_LOWER_TIME);
+
+        public static final double SENSOR_MECHANISM_RATIO = 0;
+        
+        public static final FeedbackConfigs feedbackConfig = new FeedbackConfigs()
+            .withSensorToMechanismRatio(SENSOR_MECHANISM_RATIO);
+
+        public static final double MAX_VELOCITY = 0;
+        public static final double MAX_ACCELERATION = 0;
+
+        public static final Constraints constraints = new Constraints(MAX_VELOCITY, MAX_ACCELERATION);
+
+        public static final Rotation2d STARTING_ANGLE = Rotation2d.fromDegrees(0);
+        public static final Rotation2d MIN_ANGLE = Rotation2d.fromDegrees(0);
+        public static final Rotation2d MAX_ANGLE = Rotation2d.fromDegrees(0);
+
+        public static final double STARTING_VELOCITY = 0;
+        
+        public static final double DELTA_TIME = 0.02;
+
+        public static final double S = 0.0;
+        public static final double G = 0.0;
+        public static final double V = 0.0;
+        public static final double A = 0.0;
+
+        public enum HoodState {
+            PLACE_HOLDER(Rotation2d.fromDegrees(0));
+
+            public Rotation2d angle;
+
+            private HoodState(Rotation2d angle) {
+                this.angle = angle;
             }
         }
     }
