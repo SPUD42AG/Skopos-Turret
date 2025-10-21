@@ -431,7 +431,7 @@ public final class Constants {
                 BACK_LEFT_X_POSITION, 
                 BACK_LEFT_Y_POSITION, 
                 INVERT_LEFT_SIDE, 
-                BACK_RIGHT_STEER_MOTOR_INVERTED, 
+                BACK_LEFT_STEER_MOTOR_INVERTED, 
                 BACK_LEFT_ENCODER_INVERTED
             );
 
