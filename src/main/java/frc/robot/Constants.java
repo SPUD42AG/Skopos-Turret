@@ -157,4 +157,61 @@ public final class Constants {
             }
         }
     }
+
+    public static final class TurretConstants {
+        public static final int TURRET_MOTOR_ID = 0;
+            
+        public static final double P = 0;
+        public static final double I = 0;
+        public static final double D = 0;
+        
+        public static final SlotConfigs PIDConfigs = new SlotConfigs()
+            .withKP(P)
+            .withKI(I)
+            .withKD(D);
+        
+        public static final boolean SUPPLY_CURRENT_LIMIT_ENABLE = true;
+        public static final double SUPPLY_CURRENT_LIMIT = 0;
+        public static final double SUPPLY_CURRENT_LOWER_LIMIT = 0;
+        public static final double SUPPLY_CURRENT_LOWER_TIME = 1;
+
+        public static final CurrentLimitsConfigs currentLimits = new CurrentLimitsConfigs()
+            .withSupplyCurrentLimitEnable(SUPPLY_CURRENT_LIMIT_ENABLE)
+            .withSupplyCurrentLimit(SUPPLY_CURRENT_LIMIT)
+            .withSupplyCurrentLowerLimit(SUPPLY_CURRENT_LOWER_LIMIT)
+            .withSupplyCurrentLowerTime(SUPPLY_CURRENT_LOWER_TIME);
+
+        public static final double SENSOR_MECHANISM_RATIO = 0;
+        
+        public static final FeedbackConfigs feedbackConfig = new FeedbackConfigs()
+            .withSensorToMechanismRatio(SENSOR_MECHANISM_RATIO);
+
+        public static final double MAX_VELOCITY = 0;
+        public static final double MAX_ACCELERATION = 0;
+
+        public static final Constraints constraints = new Constraints(MAX_VELOCITY, MAX_ACCELERATION);
+
+        public static final Rotation2d STARTING_ANGLE = Rotation2d.fromDegrees(0);
+        public static final Rotation2d MIN_ANGLE = Rotation2d.fromDegrees(0);
+        public static final Rotation2d MAX_ANGLE = Rotation2d.fromDegrees(0);
+
+        public static final double STARTING_VELOCITY = 0;
+        
+        public static final double DELTA_TIME = 0.02;
+
+        public static final double S = 0.0;
+        public static final double G = 0.0;
+        public static final double V = 0.0;
+        public static final double A = 0.0;
+
+        public enum TurretState {
+            PLACE_HOLDER(Rotation2d.fromDegrees(0));
+
+            public Rotation2d angle;
+
+            private TurretState(Rotation2d angle) {
+                this.angle = angle;
+            }
+        }
+    }
 }
