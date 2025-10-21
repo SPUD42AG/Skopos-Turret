@@ -1,5 +1,8 @@
 package frc.robot.subsystems.superstructure;
 
-public class IntakeSubsystem {
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.utilities.ModeSwitchHandler.ModeSwitchInterface;
+
+public class IntakeSubsystem extends SubsystemBase implements ModeSwitchInterface {
     
 }

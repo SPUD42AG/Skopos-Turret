@@ -13,7 +13,7 @@ import static frc.robot.Constants.ShooterConstants.*;
 import frc.robot.Constants.ShooterConstants.ShooterState;
 import frc.robot.utilities.ModeSwitchHandler.ModeSwitchInterface;
 
-public class ShooterSubsystem extends SubsystemBase implements ModeSwitchInterface{
+public class ShooterSubsystem extends SubsystemBase implements ModeSwitchInterface {
     
     private TalonFX motor;
 
