@@ -1,5 +1,6 @@
 package frc.robot.subsystems.superstructure;
 
+import com.ctre.phoenix6.configs.TalonFXConfigurator;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -25,16 +26,16 @@ public class ShooterSubsystem extends SubsystemBase implements ModeSwitchInterfa
         initializeMotors();
     }
 
-    //#region Initzalization
+    //#region Initialization
 
     private void initializeMotors() {
         motor = new TalonFX(SHOOTER_MOTOR_ID);
             motor.setNeutralMode(NeutralModeValue.Brake);
 
-        var mConfigurator = motor.getConfigurator();
-            mConfigurator.apply(PIDConfigs);
-            mConfigurator.apply(currentLimits);
-            mConfigurator.apply(feedbackConfig);
+        TalonFXConfigurator configurator = motor.getConfigurator();
+            configurator.apply(PIDConfigs);
+            configurator.apply(currentLimits);
+            configurator.apply(feedbackConfig);
     }
 
     //#endregion

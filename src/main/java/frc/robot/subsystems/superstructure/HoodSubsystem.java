@@ -1,5 +1,6 @@
 package frc.robot.subsystems.superstructure;
 
+import com.ctre.phoenix6.configs.TalonFXConfigurator;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -40,13 +41,13 @@ public class HoodSubsystem extends SubsystemBase implements ModeSwitchInterface 
         ModeSwitchHandler.EnableModeSwitchHandler(this);
     }
 
-    //#region Initzalization
+    //#region Initialization
 
     private void initializeMotor() {
         motor = new TalonFX(HOOD_MOTOR_ID);
             motor.setNeutralMode(NeutralModeValue.Brake);
         
-        var configurator = motor.getConfigurator();
+        TalonFXConfigurator configurator = motor.getConfigurator();
             configurator.apply(PIDConfigs);
             configurator.apply(currentLimits);
             configurator.apply(feedbackConfig);
@@ -75,7 +76,7 @@ public class HoodSubsystem extends SubsystemBase implements ModeSwitchInterface 
     }
 
     //#endregion
-    //#region Measurments
+    //#region Measurements
 
     public Rotation2d getPosition() {
         double position = motor.getPosition().getValue().in(Rotations);

@@ -46,7 +46,7 @@ import edu.wpi.first.units.measure.Voltage;
  * constants are needed, to reduce verbosity.
  */
 
-//TODO: Add actuall values for almost all of these constants
+//TODO: Add actual values for almost all of these constants
 
 public final class Constants {
     
