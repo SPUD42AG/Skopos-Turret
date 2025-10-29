@@ -448,4 +448,9 @@ public final class Constants {
                 BACK_RIGHT_ENCODER_INVERTED
             );
     }
+
+    public class visonConstants{
+        
+    }
+
 }   
