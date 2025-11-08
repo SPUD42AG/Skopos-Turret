@@ -450,7 +450,15 @@ public final class Constants {
     }
 
     public class visonConstants{
-        
+
+        public record LMConstant(String name, int ID){};
+
+       public static final LMConstant Limelights[] = {
+            new LMConstant("chucky", 0),
+            new LMConstant("ben", 0),
+            new LMConstant(null, 0)
+        };
+       //Add IDs 
     }
 
 }   
