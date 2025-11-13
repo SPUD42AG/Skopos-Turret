@@ -1,0 +1,67 @@
+import com.ctre.phoenix6.controls.PositionVoltage;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.ArmFeedforward;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
+import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.HoodConstants.HoodState;
+import frc.robot.utilities.ModeSwitchHandler;
+import frc.robot.utilities.ModeSwitchHandler.ModeSwitchInterface;
+
+import static edu.wpi.first.units.Units.Rotations;
+import static frc.robot.Constants.HoodConstants.*;
+
+public class SwerveSubsystem extends SubsystemBase implements ModeSwitchInterface {
+
+    var speeds = new chassisSpeeds(vx, vy, omega);
+    ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds( vx, vy, omega, robot.angle);
+
+    SwerveSubsystem m_kinematics = new SwerveSubsystem(
+    m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation, m_backRightLocation
+    );
+
+    // Convert to module states
+    SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(speeds);
+    // Front left module state
+    SwerveModuleState frontLeft = moduleStates[0];
+    // Front right module state
+    SwerveModuleState frontRight = moduleStates[1];
+    // Back left module state
+    SwerveModuleState backLeft = moduleStates[2];
+    // Back right module state
+    SwerveModuleState backRight = moduleStates[3];
+
+    SwerveSubsystem () {
+        
+    }
+
+    ModuelAngleOptimization () {
+        var frontLeftOptimized = SwerveModuleState.optimize(frontLeft,
+        new Rotation2d(m_turningEncoder.getDistance()));
+    }
+
+    CosineCompensation () {
+        var currentAngle = new Rotation2d.fromRadians(m_turningEncoder.getDistance());
+        var frontLeftOptimized = SwerveModuleState.optimize(frontLeft, currentAngle);
+        frontLeftOptimized.speedMetersPerSecond *= frontLeftOptimized.angle.minus(currentAngle).getCos();
+    }
+
+    FieldOrientedDrive () {
+        // The desired field relative speed here is 2 meters per second
+        // toward the opponent's alliance station wall, and 2 meters per
+        // second toward the left field boundary. The desired rotation
+        // is a quarter of a rotation per second counterclockwise. The current
+        // robot angle is 45 degrees.
+        ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
+            2.0, 2.0, Math.PI / 2.0, Rotation2d.fromDegrees(45.0));
+        // Now use this in our kinematics
+        SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(speeds);
+    }
+}
+
