@@ -245,4 +245,12 @@ public final class Constants {
             }
         }
     }
+
+    public static final class Swerve Constants {
+        //Locations for the wheels of the Swerve Drive
+        Translation2d m_frontLeftLocation = new Translation2d(0.0, 0.0);
+        Translation2d m_frontRightLocation = new Translation2d(0.0, -0.0);
+        Translation2d m_backLeftLocation = new Translation2d(-0.0, 0.0);
+        Translation2d m_backRightLocation = new Translation2d(-0.0, -0.0);
+    }
 }   
